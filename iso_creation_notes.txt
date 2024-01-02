@@ -1,0 +1,23 @@
+https://fai-project.org/FAIme/
+debian FAI config
+
+> Toggle advanced
+
+miteadmin
+verysecure
+
+> One partition using LVM
+
+XFCE desktop
+
+x OpenSSH server
+x Standard system tools
+x Non-free Linux firmware
+
+Add packages to be installed:
+unattended-upgrades jq git ansible curl
+
+shutdown computer at the end
+
+Custom script to put into /usr/local/bin/:
+initial_install.sh
