@@ -31,9 +31,6 @@ sed -i -e 's/GRUB_THEME=.*\+/GRUB_THEME=/boot/grub/theme/theme.txt/g' $FILE
 grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
 update-grub
 
-xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor1/workspace0/last-image -s /path/to/your/wallpaper.jpg
-
-
 echo "Installing unclutter (hides mouse cursor)"
 sudo apt-get install unclutter -y
 # unclutter will need a reboot for it to take effect
