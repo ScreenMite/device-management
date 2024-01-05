@@ -18,9 +18,6 @@ rm -rf /usr/share/images/wallpaper.png
 mv $PWD/wallpaper.png /usr/share/images/wallpaper.png
 ln -s /usr/share/images/wallpaper.png /usr/share/images/desktop-base/default
 
-
-
-
 echo "Applying grub settings.."
 rm -rf /boot/grub/theme
 mv $PWD/grub_theme /boot/grub/theme
@@ -35,5 +32,14 @@ echo "Installing unclutter (hides mouse cursor)"
 sudo apt-get install unclutter -y
 # unclutter will need a reboot for it to take effect
 
+apt-get install wget chromium xdotool python3-selenium python3-websockets psmisc -y
 
-
+pingres=$(ping screen.mite -c 1)
+if [[ "$pingres" == *"bytes from"* ]]; then
+   echo "Local DNS Record. Download script from local test webserver"
+   rm -rf testscript
+   wget -P testscript -r http://screen.mite:8000/
+   cd testscript
+   chmod +x ./setup.sh
+   python3 ./setup.sh
+fi

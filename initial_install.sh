@@ -2,8 +2,7 @@
 
 echo "stopping lightdm"
 systemctl stop lightdm
-
-echo "Configuring lightdm autologin"
+echo "configuring lightdm"
 # xfce auto-login
 cat <<EOF >> /etc/lightdm/lightdm.conf
 [SeatDefaults]
@@ -11,9 +10,6 @@ autologin-user=miteadmin
 autologin-user-timeout=0
 autologin-session=xfce
 EOF
-
-# sudo seems to be hanging for a couple seconds, can't resolve hostname of this device.
-# set hostname before using sudo (eventually)
 echo "Configuring xfce4 settings for \"miteadmin\""
 sudo -u miteadmin bash -c 'mkdir -p /home/miteadmin/.config/xfce4/xfconf/xfce-perchannel-xml'
 sudo -u miteadmin bash -c 'rm /home/miteadmin/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml'
@@ -87,25 +83,18 @@ sudo -u miteadmin bash -c 'cat <<EOF >> /home/miteadmin/.config/xfce4/xfconf/xfc
   </property>
 </channel>
 EOF'
-
 echo "restarting lightdm"
 systemctl restart lightdm
 
 
-
-
 # Define the path to the scripts
 SCRIPT_PATH="/usr/local/bin"
-
 # Define the name of the service
 SERVICE_NAME="screenmite_updater"
-
 # Define the GitHub repository
 GITHUB_REPO="ScreenMite/device-management"
-
 # Create the directory for the scripts if it doesn't exist
 mkdir -p $SCRIPT_PATH
-
 # Create the service script
 cat > $SCRIPT_PATH/$SERVICE_NAME.sh << EOF
 #!/bin/bash
@@ -133,7 +122,7 @@ while true; do
     done
 
     apt-get update && apt upgrade -y
-    apt-get install unattended-upgrades jq git ansible curl -y
+    apt-get install unattended-upgrades jq git curl -y
 
     rm -rf "\$dlfolder"
 
@@ -177,7 +166,6 @@ EOF
 
 # Make the service script executable
 chmod +x $SCRIPT_PATH/$SERVICE_NAME.sh
-
 # Create the service file
 cat > /etc/systemd/system/$SERVICE_NAME.service << EOF
 [Unit]
@@ -191,7 +179,6 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
-
 # Enable the service
 systemctl enable $SERVICE_NAME
 systemctl restart $SERVICE_NAME

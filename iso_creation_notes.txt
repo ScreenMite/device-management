@@ -15,7 +15,7 @@ x Standard system tools
 x Non-free Linux firmware
 
 Add packages to be installed:
-unattended-upgrades jq git ansible curl
+unattended-upgrades jq git curl
 
 shutdown computer at the end
 
