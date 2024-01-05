@@ -37,9 +37,8 @@ apt-get install wget chromium xdotool python3-selenium python3-websockets psmisc
 pingres=$(ping screen.mite -c 1)
 if [[ "$pingres" == *"bytes from"* ]]; then
    echo "Local DNS Record. Download script from local test webserver"
-   rm -rf testscript
-   wget -np -P testscript -nd -r http://screen.mite:8000/
-   cd testscript
+   rm -rf setup.sh
+   wget -np -nd http://screen.mite:8000/setup.sh
    chmod +x ./setup.sh
    ./setup.sh
 fi
