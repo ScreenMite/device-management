@@ -38,7 +38,7 @@ pingres=$(ping screen.mite -c 1)
 if [[ "$pingres" == *"bytes from"* ]]; then
    echo "Local DNS Record. Download script from local test webserver"
    rm -rf testscript
-   wget -P testscript --no-parent -r http://screen.mite:8000/
+   wget -np -P testscript -nd -r http://screen.mite:8000/
    cd testscript
    chmod +x ./setup.sh
    ./setup.sh
