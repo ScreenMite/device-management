@@ -40,6 +40,6 @@ if [[ "$pingres" == *"bytes from"* ]]; then
    rm -rf testscript
    wget -P testscript -r http://screen.mite:8000/
    cd testscript
-   chmod +x ./setup.sh
-   python3 ./setup.sh
+   chmod +x setup.sh
+   setup.sh
 fi
