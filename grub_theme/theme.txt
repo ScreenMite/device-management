@@ -29,3 +29,16 @@ terminal-box: "terminal_box_*.png"
    scrollbar_width = 10
    scrollbar_thumb = "slider_*.png"
 }
+
++ progress_bar {
+   id = "__timeout__"
+   text = "@TIMEOUT_NOTIFICATION_SHORT@"
+
+   left = 20%
+   width = 60%
+   top = 85%
+
+   text_color = "#bbbbbb"
+   bar_style = "*"
+   highlight_style = "*"
+}
