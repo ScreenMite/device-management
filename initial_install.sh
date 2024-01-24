@@ -32,6 +32,27 @@ sudo -u miteadmin bash -c 'cat <<EOF >> /home/miteadmin/.config/xfce4/xfconf/xfc
   </property>
 </channel>
 EOF'
+sudo -u miteadmin bash -c 'rm /home/miteadmin/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml'
+sudo -u miteadmin bash -c 'cat <<EOF >> /home/miteadmin/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-power-manager" version="1.0">
+  <property name="xfce4-power-manager" type="empty">
+    <property name="power-button-action" type="uint" value="0"/>
+    <property name="show-tray-icon" type="bool" value="false"/>
+    <property name="dpms-enabled" type="bool" value="true"/>
+    <property name="dpms-on-ac-sleep" type="uint" value="0"/>
+    <property name="blank-on-ac" type="int" value="0"/>
+    <property name="dpms-on-ac-off" type="uint" value="0"/>
+    <property name="dpms-on-battery-sleep" type="uint" value="0"/>
+    <property name="blank-on-battery" type="int" value="0"/>
+    <property name="dpms-on-battery-off" type="uint" value="0"/>
+    <property name="inactivity-on-battery" type="uint" value="14"/>
+    <property name="lock-screen-suspend-hibernate" type="bool" value="false"/>
+    <property name="logind-handle-lid-switch" type="bool" value="false"/>
+  </property>
+</channel>
+EOF'
 sudo -u miteadmin bash -c 'rm /home/miteadmin/.config/xfce4/xfconf/xfce-perchannel-xml/displays.xml'
 sudo -u miteadmin bash -c 'cat <<EOF >> /home/miteadmin/.config/xfce4/xfconf/xfce-perchannel-xml/displays.xml
 <?xml version="1.0" encoding="UTF-8"?>
